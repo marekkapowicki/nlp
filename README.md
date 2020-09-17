@@ -21,8 +21,6 @@ To read more about Tika ocr check this [blog post](https://medium.com/@masreis/t
 ###OCR in action
 to see how the ocr process works in practice just send the sample file using curl
 ```
-curl --request POST \
-  --url http://localhost:8080/ocr \
-  --header 'content-type: multipart/form-data; boundary=---011000010111000001101001' \
-  --data-binary @file
+curl -X POST "http://localhost:8080/ocr" -H "accept: */*" -H "Content-Type: multipart/form-data" -F "fileToOcr=@someDoc.jpg;type=image/jpeg"
 ```
+or You can use the swagger dashboard [swagger-ui](http://localhost:8080/swagger-ui/)
