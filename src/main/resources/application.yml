@@ -1,0 +1,9 @@
+ocr:
+  serverUrl: http://localhost:9998/tika
+  callTimeoutInSecond: 40
+  tikaHeaders:
+    X-Tika-PDFextractInlineImages: true
+    #X-Tika-OCRLanguage: pol
+spring.servlet.multipart:
+  max-file-size: 10MB
+  max-request-size: 10MB

@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  tika:
+    image: 'apache/tika:1.24-full'
+    command: apt-get update && apt-get install tesseract-ocr-pol
+    ports:
+      - '9998:9998'
+    container_name: tika-server-ocr
