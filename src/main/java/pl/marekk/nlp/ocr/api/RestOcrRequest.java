@@ -1,6 +1,7 @@
 package pl.marekk.nlp.ocr.api;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StreamUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,9 +14,10 @@ import java.util.Optional;
 
 @Slf4j
 @AllArgsConstructor
+@Data
 public class RestOcrRequest {
     @NotNull(message = "file to upload is null")
-    private final MultipartFile fileToOcr;
+    private MultipartFile fileToOcr;
 
     public static RestOcrRequest valueOf(MultipartFile fileToOcr) {
         return new RestOcrRequest(fileToOcr);

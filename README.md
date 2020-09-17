@@ -24,5 +24,5 @@ to see how the ocr process works in practice just send the sample file using cur
 curl --request POST \
   --url http://localhost:8080/ocr \
   --header 'content-type: multipart/form-data; boundary=---011000010111000001101001' \
-  --form request=
+  --data-binary @file
 ```

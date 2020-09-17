@@ -1,10 +1,10 @@
-package pl.marekk.nlp.ocr;
+package pl.marekk.nlp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OcrApplicationTests {
+class NlpApplicationTests {
 
     @Test
     void contextLoads() {
