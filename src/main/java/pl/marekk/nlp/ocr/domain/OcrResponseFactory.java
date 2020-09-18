@@ -7,7 +7,6 @@ import static pl.marekk.nlp.ocr.domain.OcrSuccessResponse.success;
 
 public interface OcrResponseFactory {
 
-
     default Either<OcrFailureResponse, OcrSuccessResponse> createResponse() {
         try {
             if (!isSuccessful()) {

@@ -8,9 +8,9 @@ import pl.marekk.nlp.ocr.domain.OcrSuccessResponse;
 @Value
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class RestOcrResponse {
-    String text;
+  String text;
 
-    static RestOcrResponse success(OcrSuccessResponse response) {
-        return new RestOcrResponse(response.text());
-    }
+  static RestOcrResponse success(OcrSuccessResponse response) {
+    return new RestOcrResponse(response.text());
+  }
 }

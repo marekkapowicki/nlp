@@ -9,5 +9,4 @@ class NlpApplicationTests {
     @Test
     void contextLoads() {
     }
-
 }

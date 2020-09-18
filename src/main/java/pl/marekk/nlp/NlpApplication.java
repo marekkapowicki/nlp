@@ -12,5 +12,4 @@ public class NlpApplication {
     public static void main(String[] args) {
         SpringApplication.run(NlpApplication.class, args);
     }
-
 }

@@ -17,21 +17,21 @@ import java.util.Map;
 @AllArgsConstructor
 class OcrController {
 
-    private final Ocr ocr;
+  private final Ocr ocr;
 
-    @PostMapping(value = "/ocr", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    ResponseEntity<Map<String, Object>> processOcr(@Valid RestOcrRequest request) {
-        log.info("processing the ocr for {}", request);
-        return request.buildOcrCommand()
-                .map(this::processOcr)
-                .orElseGet(() -> ResponseEntity.badRequest().build());
-    }
+  @PostMapping(value = "/ocr", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  ResponseEntity<Map<String, Object>> processOcr(@Valid RestOcrRequest request) {
+    log.info("processing the ocr for {}", request);
+    return request
+            .buildOcrCommand()
+            .map(this::processOcr)
+            .orElseGet(() -> ResponseEntity.badRequest().build());
+  }
 
-    private ResponseEntity<Map<String, Object>> processOcr(OcrCommand ocrCommand) {
-        return ocr.processOcr(ocrCommand)
-                .fold(
-                        FailureResponseBuilder::buildFailureResponse,
-                        SuccessResponseBuilder::buildSuccessRestResponse);
-    }
-
+  private ResponseEntity<Map<String, Object>> processOcr(OcrCommand ocrCommand) {
+    return ocr.processOcr(ocrCommand)
+            .fold(
+                    FailureResponseBuilder::buildFailureResponse,
+                    SuccessResponseBuilder::buildSuccessRestResponse);
+  }
 }
