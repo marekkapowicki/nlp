@@ -20,7 +20,6 @@ import static org.springframework.util.StreamUtils.copyToByteArray;
 public class RestOcrRequest {
   @NotNull(message = "file to upload is null")
   private MultipartFile fileToOcr;
-
   private LanguageCode language;
 
   Optional<OcrCommand> buildOcrCommand() {
