@@ -1,6 +1,7 @@
 package pl.marekk.nlp.ocr.api;
 
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import pl.marekk.nlp.ocr.domain.OcrFailureResponse;
@@ -10,10 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @UtilityClass
+@Slf4j
 class FailureResponseBuilder {
 
   static ResponseEntity<Map<String, Object>> buildFailureResponse(
           OcrFailureResponse failureResponse) {
+    log.info("preparing failure response {} ", failureResponse.statusCode());
     return new ResponseEntity(buildFailureBody(failureResponse), statusCode(failureResponse));
   }
 

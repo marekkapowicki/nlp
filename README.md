@@ -1,3 +1,16 @@
+# System specification
+* [java 11](https://jdk.java.net/11/)
+* [spring boot 2.3](https://spring.io/blog/2020/08/13/spring-boot-2-3-3-available-now)
+## Build the application
+Cloud Native Buildpacks are used to build the application
+``` 
+./mvnw spring-boot:build-image
+```
+## Run the application
+The single command is enough to start the whole application
+```
+docker-compose up
+```
 ## Optical Character Recognition
 The Ocr process is being processed by [Apache Tika](https://tika.apache.org/1.24/index.html) that uses [Google Tesseract](https://opensource.google/projects/tesseract) 
 under the hood. The ocr uses the [OkHttpClient](https://square.github.io/okhttp) to create the http call to Apache Tika Server 
