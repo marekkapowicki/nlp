@@ -14,7 +14,7 @@ import static java.util.Map.of;
 @Slf4j
 public class SuccessResponseBuilder {
   static ResponseEntity<Map<String, Object>> buildSuccessRestResponse(
-          OcrSuccessResponse successResponse) {
+      OcrSuccessResponse successResponse) {
     log.info("preparing success response");
     Map<String, Object> body = of("text", successResponse.text());
     return new ResponseEntity<>(body, HttpStatus.OK);

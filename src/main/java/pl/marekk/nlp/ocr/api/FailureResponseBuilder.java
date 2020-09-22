@@ -15,7 +15,7 @@ import java.util.Map;
 class FailureResponseBuilder {
 
   static ResponseEntity<Map<String, Object>> buildFailureResponse(
-          OcrFailureResponse failureResponse) {
+      OcrFailureResponse failureResponse) {
     log.info("preparing failure response {} ", failureResponse.statusCode());
     return new ResponseEntity(buildFailureBody(failureResponse), statusCode(failureResponse));
   }

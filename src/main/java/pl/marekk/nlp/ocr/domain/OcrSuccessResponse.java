@@ -5,13 +5,13 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class OcrSuccessResponse {
-    private final String text;
+  private final String text;
 
-    public static OcrSuccessResponse success(String text) {
-        return new OcrSuccessResponse(text);
-    }
+  public static OcrSuccessResponse success(String text) {
+    return new OcrSuccessResponse(text);
+  }
 
-    public String text() {
-        return text;
-    }
+  public String text() {
+    return text;
+  }
 }

@@ -11,16 +11,16 @@ import java.util.function.Supplier;
 @UtilityClass
 public class OcrCommandBuilder {
 
-    public static Optional<OcrCommand> buildOcrCommand(
-            Supplier<byte[]> contentSupplier,
-            String contentType,
-            String fileName,
-            LanguageCode language) {
-        try {
-            return Optional.of(OcrCommand.of(contentSupplier.get(), contentType, language));
-        } catch (IllegalStateException e) {
-            log.warn("issue during reading {}: {}", fileName, e.getMessage());
-            return Optional.empty();
-        }
+  public static Optional<OcrCommand> buildOcrCommand(
+      Supplier<byte[]> contentSupplier,
+      String contentType,
+      String fileName,
+      LanguageCode language) {
+    try {
+      return Optional.of(OcrCommand.of(contentSupplier.get(), contentType, language));
+    } catch (IllegalStateException e) {
+      log.warn("issue during reading {}: {}", fileName, e.getMessage());
+      return Optional.empty();
     }
+  }
 }

@@ -7,10 +7,10 @@ import java.util.function.Function;
 
 @AllArgsConstructor
 public class Ocr {
-    private final Function<OcrCommand, OcrResponseFactory> ocrFunction;
+  private final Function<OcrCommand, OcrResponseFactory> ocrFunction;
 
-    public Either<OcrFailureResponse, OcrSuccessResponse> processOcr(OcrCommand ocrCommand) {
-        final OcrResponseFactory ocrResponseFactory = ocrFunction.apply(ocrCommand);
-        return ocrResponseFactory.createResponse();
-    }
+  public Either<OcrFailureResponse, OcrSuccessResponse> processOcr(OcrCommand ocrCommand) {
+    final OcrResponseFactory ocrResponseFactory = ocrFunction.apply(ocrCommand);
+    return ocrResponseFactory.createResponse();
+  }
 }

@@ -13,10 +13,9 @@ import java.util.Map;
 @Getter
 @Setter
 public class TikaOcrProperties {
-  @NotNull
-  private String serverUrl;
+  @NotNull private String serverUrl;
 
-    private int callTimeoutInSecond;
+  private int callTimeoutInSecond;
 
-    private Map<String, String> tikaHeaders;
+  private Map<String, String> tikaHeaders;
 }

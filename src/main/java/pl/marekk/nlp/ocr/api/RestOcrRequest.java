@@ -20,29 +20,30 @@ import static org.springframework.util.StreamUtils.copyToByteArray;
 public class RestOcrRequest {
   @NotNull(message = "file to upload is null")
   private MultipartFile fileToOcr;
+
   private LanguageCode language;
 
   Optional<OcrCommand> buildOcrCommand() {
     return OcrCommandBuilder.buildOcrCommand(
-            this::contentAsByteArray,
-            fileToOcr.getContentType(),
-            fileToOcr.getOriginalFilename(),
-            language);
+        this::contentAsByteArray,
+        fileToOcr.getContentType(),
+        fileToOcr.getOriginalFilename(),
+        language);
   }
 
   private byte[] contentAsByteArray() {
     return Optional.of(fileToOcr)
-            .map(API.unchecked(file -> copyToByteArray(file.getInputStream())))
-            .orElseThrow(() -> new IllegalStateException("issue during reading the fileToOcr"));
+        .map(API.unchecked(file -> copyToByteArray(file.getInputStream())))
+        .orElseThrow(() -> new IllegalStateException("issue during reading the fileToOcr"));
   }
 
   @Override
   public String toString() {
     return "RestOcrRequest{"
-            + "language: "
-            + language
-            + ", fileToOcr="
-            + fileToOcr.getOriginalFilename()
-            + '}';
+        + "language: "
+        + language
+        + ", fileToOcr="
+        + fileToOcr.getOriginalFilename()
+        + '}';
   }
 }

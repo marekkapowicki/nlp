@@ -41,21 +41,19 @@ class TikaOcrClient implements Function<OcrCommand, OcrResponseFactory> {
     } catch (IOException e) {
       log.warn("error during call tika server {}", e.getMessage());
       return new Response.Builder()
-              .request(request)
-              .message(e.getMessage())
-              .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
-              .protocol(Protocol.HTTP_1_1)
-              .body(ResponseBody.create(e.getMessage(), MediaType.parse("application/json")))
-              .build();
+          .request(request)
+          .message(e.getMessage())
+          .code(HttpStatus.INTERNAL_SERVER_ERROR.value())
+          .protocol(Protocol.HTTP_1_1)
+          .body(ResponseBody.create(e.getMessage(), MediaType.parse("application/json")))
+          .build();
     }
   }
 
   private Request buildRequest(OcrCommand ocrCommand) {
     log.info("building the tika request from: {}", ocrCommand);
     Request.Builder requestBuilder =
-            new Request.Builder()
-                    .url(tikaUrl)
-                    .put(RequestBody.create(ocrCommand.getContent()));
+        new Request.Builder().url(tikaUrl).put(RequestBody.create(ocrCommand.getContent()));
     Map<String, String> tikaHeaders = tikaHeaders(ocrCommand, headers);
     if (tikaHeaders != null && !tikaHeaders.isEmpty()) {
       requestBuilder.headers(Headers.of(tikaHeaders));

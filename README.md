@@ -34,7 +34,7 @@ To read more about Tika ocr check this [blog post](https://medium.com/@masreis/t
 ###OCR in action
 to see how the ocr process works in practice just send the sample file using curl
 ```
-curl -X POST "http://localhost:8080/ocr" -H "accept: */*" -H "Content-Type: multipart/form-data" -F "fileToOcr=@someDoc.jpg;type=image/jpeg"
+curl -X POST "http://localhost:8080/api/actions/ocr" -H "accept: */*" -H "Content-Type: multipart/form-data" -F "fileToOcr=@someDoc.jpg;type=image/jpeg"
 ```
 You can use also the swagger dashboard [swagger-ui](http://localhost:8080/swagger-ui/)
 ### Processing document with specific language
@@ -42,5 +42,5 @@ There is a language parameter in Ocr Api. It can be null than the Apache Tika tr
 The language can be specified in request - for instance (pl, en). Here is [list of languages](https://github.com/TakahikoKawasaki/nv-i18n/blob/master/src/main/java/com/neovisionaries/i18n/LanguageCode.java).
 Sometimes it improves the quality of ocr process.
 ``` 
-curl -X POST "http://localhost:8080/ocr" -H "accept: */*" -H "Content-Type: multipart/form-data" -F "fileToOcr=@doc.pdf;type=application/pdf" -F "language=pl" 
+curl -X POST "http://localhost:8080/api/actions/ocr" -H "accept: */*" -H "Content-Type: multipart/form-data" -F "fileToOcr=@doc.pdf;type=application/pdf" -F "language=pl" 
 ```

@@ -24,16 +24,16 @@ class OcrApplicationConfiguration {
 
   @Bean
   TikaOcrClient tikaOcrClient(
-          TikaOcrProperties tikaOcrProperties, HttpLoggingInterceptor loggingInterceptor) {
+      TikaOcrProperties tikaOcrProperties, HttpLoggingInterceptor loggingInterceptor) {
 
     OkHttpClient httpClient =
-            new OkHttpClient.Builder()
-                    .addInterceptor(loggingInterceptor)
-                    .readTimeout(tikaOcrProperties.getCallTimeoutInSecond(), SECONDS)
-                    .callTimeout(tikaOcrProperties.getCallTimeoutInSecond(), SECONDS)
-                    .build();
+        new OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .readTimeout(tikaOcrProperties.getCallTimeoutInSecond(), SECONDS)
+            .callTimeout(tikaOcrProperties.getCallTimeoutInSecond(), SECONDS)
+            .build();
     return new TikaOcrClient(
-            httpClient, tikaOcrProperties.getServerUrl(), tikaOcrProperties.getTikaHeaders());
+        httpClient, tikaOcrProperties.getServerUrl(), tikaOcrProperties.getTikaHeaders());
   }
 
   @Bean

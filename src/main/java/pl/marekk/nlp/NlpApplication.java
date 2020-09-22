@@ -9,7 +9,7 @@ import pl.marekk.nlp.documentation.SwaggerConfiguration;
 @Import({SwaggerConfiguration.class})
 public class NlpApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(NlpApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(NlpApplication.class, args);
+  }
 }

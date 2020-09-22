@@ -11,36 +11,36 @@ import java.util.Optional;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 class TikaOcrResponseFactory implements OcrResponseFactory {
-    private final Response httpResponse;
+  private final Response httpResponse;
 
-    static TikaOcrResponseFactory of(Response httpResponse) {
-        return new TikaOcrResponseFactory(httpResponse);
-    }
+  static TikaOcrResponseFactory of(Response httpResponse) {
+    return new TikaOcrResponseFactory(httpResponse);
+  }
 
-    @Override
-    public boolean isSuccessful() {
-        return httpResponse.isSuccessful();
-    }
+  @Override
+  public boolean isSuccessful() {
+    return httpResponse.isSuccessful();
+  }
 
-    @Override
-    public int code() {
-        return httpResponse.code();
-    }
+  @Override
+  public int code() {
+    return httpResponse.code();
+  }
 
-    @Override
-    public String message() {
-        return httpResponse.message();
-    }
+  @Override
+  public String message() {
+    return httpResponse.message();
+  }
 
-    @Override
-    public String bodyAsString() {
-        return Optional.ofNullable(httpResponse.body())
-                .map(API.unchecked(ResponseBody::string))
-                .orElseThrow(() -> new IllegalStateException("tika response body is null"));
-    }
+  @Override
+  public String bodyAsString() {
+    return Optional.ofNullable(httpResponse.body())
+        .map(API.unchecked(ResponseBody::string))
+        .orElseThrow(() -> new IllegalStateException("tika response body is null"));
+  }
 
-    @Override
-    public void closeStream() {
-        httpResponse.close();
-    }
+  @Override
+  public void closeStream() {
+    httpResponse.close();
+  }
 }
