@@ -7,6 +7,9 @@ import pl.marekk.nlp.ocr.domain.OcrResponseFactory;
 import java.util.function.Function;
 
 public class TestOcr extends Ocr {
+    public static TestOcr failure(int expectedCode, String expectedMessage){
+        return new TestOcr(FailureOcrResponseFactory.newInstance(expectedCode, expectedMessage));
+    }
     public static TestOcr success(String expectedResponseText){
         return new TestOcr(SuccessOcrResponseFactory.newInstance(expectedResponseText));
     }
