@@ -14,19 +14,16 @@ import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
 
 public class OcrControllerTest {
 
-
   @Test
   public void processingTheSuccessFlow() throws IOException {
 
     //given
     final OcrController ocrController = new OcrController(TestOcr.success("ocr is cool"));
-
     RestAssuredMockMvc.standaloneSetup(ocrController);
-    File tempFile = File.createTempFile("test", "pdf");
-    tempFile.deleteOnExit();
+
     // expect
     given()
-        .multiPart("fileToOcr", tempFile)
+        .multiPart("fileToOcr", sampleFile())
         .contentType("multipart/form-data")
         .when()
         .post("/api/actions/ocr")
@@ -42,13 +39,10 @@ public class OcrControllerTest {
 
     //given
     final OcrController ocrController = new OcrController(TestOcr.failure(503, "mock error"));
-
     RestAssuredMockMvc.standaloneSetup(ocrController);
-    File tempFile = File.createTempFile("test", "pdf");
-    tempFile.deleteOnExit();
     // expect
     given()
-        .multiPart("fileToOcr", tempFile)
+        .multiPart("fileToOcr", sampleFile())
         .contentType("multipart/form-data")
     .when()
         .post("/api/actions/ocr")
@@ -57,5 +51,11 @@ public class OcrControllerTest {
         .ifValidationFails()
         .statusCode(SERVICE_UNAVAILABLE.value())
         .body("message", equalTo("mock error"));
+  }
+
+  private static File sampleFile() throws IOException {
+    File tempFile = File.createTempFile("sample", "pdf");
+    tempFile.deleteOnExit();
+    return tempFile;
   }
 }

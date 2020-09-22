@@ -80,6 +80,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-vavr</artifactId>
+            <version>0.2.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured-common</artifactId>
             <version>4.3.1</version>
