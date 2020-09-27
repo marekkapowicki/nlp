@@ -1,12 +1,15 @@
 ocr:
-  serverUrl: http://localhost:9998/tika
-  callTimeoutInSecond: 40
+  serverUrl: http://tika-server-ocr:9998/tika
+  callTimeoutInSecond: 240
   tikaHeaders:
+    X-Tika-OCRtimeout: ${ocr.callTimeoutInSecond}
     X-Tika-PDFextractInlineImages: true
-    #X-Tika-OCRLanguage: eng
+    X-Tika-PDFocrStrategy: OCR_ONLY
+    X-Tika-OCREnableImageProcessing: 1
+    X-Tika-OCRApplyRotation: true
 server:
   error:
     include-message: always
 spring.servlet.multipart:
-  max-file-size: 10MB
-  max-request-size: 10MB
+  max-file-size: 30MB
+  max-request-size: 30MB

@@ -6,8 +6,18 @@ services:
     ports:
       - '9998:9998'
     container_name: tika-server-ocr
+    networks:
+      - nlp-network
   nlp:
     image: 'docker.io/library/nlp:0.0.1-SNAPSHOT'
     ports:
       - '8080:8080'
+      - '80:80'
     container_name: ocr-app
+    links:
+      - tika
+    networks:
+      - nlp-network
+networks:
+  nlp-network:
+    driver: bridge
