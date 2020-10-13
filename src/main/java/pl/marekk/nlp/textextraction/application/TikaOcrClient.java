@@ -25,7 +25,7 @@ class TikaOcrClient implements Function<TextExtractionCommand, TextExtractionRes
   static final okhttp3.logging.HttpLoggingInterceptor.Logger httpLogger = log::info;
   private final OkHttpClient httpClient;
   private final String tikaUrl;
-  private final Map<String, String> headers;
+  private final Map<String, String> ocrAdditionalHeaders;
 
   @Override
   public TextExtractionResponseFactory apply(TextExtractionCommand textExtractionCommand) {
@@ -53,12 +53,12 @@ class TikaOcrClient implements Function<TextExtractionCommand, TextExtractionRes
   private Request buildRequest(TextExtractionCommand textExtractionCommand) {
     log.info("building the tika request from: {}", textExtractionCommand);
     Request.Builder requestBuilder =
-        new Request.Builder()
-            .url(tikaUrl)
-            .put(RequestBody.create(textExtractionCommand.getContent()));
-    Map<String, String> tikaHeaders = TikaHeaders.toTikaHeaders(textExtractionCommand);
-    if (tikaHeaders != null && !tikaHeaders.isEmpty()) {
-      requestBuilder.headers(Headers.of(tikaHeaders));
+            new Request.Builder()
+                    .url(tikaUrl)
+                    .put(RequestBody.create(textExtractionCommand.getContent()));
+    Map<String, String> tikaRequestHeaders = TikaHeaders.toTikaHeaders(textExtractionCommand, ocrAdditionalHeaders);
+    if (tikaRequestHeaders != null && !tikaRequestHeaders.isEmpty()) {
+      requestBuilder.headers(Headers.of(tikaRequestHeaders));
     }
     return requestBuilder.build();
   }

@@ -33,7 +33,7 @@ class TikaApplicationConfiguration {
             .callTimeout(tikaOcrProperties.getCallTimeoutInSecond(), SECONDS)
             .build();
     return new TikaOcrClient(
-        httpClient, tikaOcrProperties.getServerUrl(), tikaOcrProperties.getTikaAdditionalHeaders());
+            httpClient, tikaOcrProperties.getServerUrl(), tikaOcrProperties.getOcrAdditionalHeaders());
   }
 
   @Bean

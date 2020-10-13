@@ -15,26 +15,27 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public enum TikaHeaders {
   LANGUAGE(
-      command -> command.getLanguage() != null,
-      command -> new LanguageHeadersExtractor().tikaHeaders(command)),
+          command -> command.textExtractionCommand().getLanguage() != null,
+          command -> new LanguageHeadersExtractor().tikaHeaders(command)),
   NO_OCR(
-      command -> !command.ocrRequired(),
-      command -> new NoOcrHeadersExtractor().tikaHeaders(command)),
+          command -> !command.ocrRequired(),
+          command -> new NoOcrHeadersExtractor().tikaHeaders(command)),
   OCR(
-      TextExtractionCommand::ocrRequired,
-      command -> new OcrHeadersExtractor().tikaHeaders(command));
-  private final Predicate<TextExtractionCommand> applicable;
-  private final Function<TextExtractionCommand, List<Map.Entry<String, String>>> extractor;
+          HeadersExtractionCommand::ocrRequired,
+          command -> new OcrHeadersExtractor().tikaHeaders(command));
+  private final Predicate<HeadersExtractionCommand> applicable;
+  private final Function<HeadersExtractionCommand, List<Map.Entry<String, String>>> extractor;
 
-  public static Map<String, String> toTikaHeaders(TextExtractionCommand command) {
+  public static Map<String, String> toTikaHeaders(TextExtractionCommand command, Map<String, String> ocrAdditionalHeaders) {
+    HeadersExtractionCommand headersExtractionCommand = new HeadersExtractionCommand(command, ocrAdditionalHeaders);
     return Arrays.stream(values())
-        .map(header -> header.process(command))
-        .filter(list -> !list.isEmpty())
-        .flatMap(List::stream)
-        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            .map(header -> header.process(headersExtractionCommand))
+            .filter(list -> !list.isEmpty())
+            .flatMap(List::stream)
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
   }
 
-  private List<Map.Entry<String, String>> process(TextExtractionCommand command) {
+  private List<Map.Entry<String, String>> process(HeadersExtractionCommand command) {
     return Optional.of(command).filter(applicable).map(extractor).orElse(new ArrayList<>());
   }
 }

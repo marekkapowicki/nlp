@@ -1,15 +1,13 @@
 package pl.marekk.nlp.textextraction.application.headers;
 
-import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
-
 import java.util.List;
 import java.util.Map;
 
 class NoOcrHeadersExtractor implements HeadersExtractor {
   @Override
-  public List<Map.Entry<String, String>> tikaHeaders(TextExtractionCommand command) {
+  public List<Map.Entry<String, String>> tikaHeaders(HeadersExtractionCommand command) {
     return List.of(
-        Map.entry("X-Tika-PDFextractInlineImages", "false"),
-        Map.entry("X-Tika-PDFocrStrategy", "NO_OCR"));
+            Map.entry(X_TIKA_PDFEXTRACT_INLINE_IMAGES, "false"),
+            Map.entry(X_TIKA_PDFOCR_STRATEGY, "NO_OCR"));
   }
 }

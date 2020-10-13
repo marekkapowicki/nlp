@@ -1,11 +1,12 @@
 package pl.marekk.nlp.textextraction.application.headers;
 
-import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
-
 import java.util.List;
 import java.util.Map;
 
 @FunctionalInterface
 interface HeadersExtractor {
-  List<Map.Entry<String, String>> tikaHeaders(TextExtractionCommand command);
+  String X_TIKA_PDFEXTRACT_INLINE_IMAGES = "X-Tika-PDFextractInlineImages";
+  String X_TIKA_PDFOCR_STRATEGY = "X-Tika-PDFocrStrategy";
+
+  List<Map.Entry<String, String>> tikaHeaders(HeadersExtractionCommand command);
 }

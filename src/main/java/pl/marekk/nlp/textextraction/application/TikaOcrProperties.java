@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotNull;
 import java.util.Map;
 
-@ConfigurationProperties(prefix = "ocr")
+@ConfigurationProperties(prefix = "text-extraction")
 @Validated
 @Getter
 @Setter
@@ -17,5 +17,5 @@ public class TikaOcrProperties {
 
   private int callTimeoutInSecond;
 
-  private Map<String, String> tikaAdditionalHeaders;
+  private Map<String, String> ocrAdditionalHeaders;
 }
