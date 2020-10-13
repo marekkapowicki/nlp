@@ -11,8 +11,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.http.HttpStatus;
-import pl.marekk.nlp.ocr.domain.OcrCommand;
-import pl.marekk.nlp.ocr.domain.OcrResponseFactory;
+import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
+import pl.marekk.nlp.ocr.domain.TextExtractionResponseFactory;
 
 import java.io.IOException;
 import java.util.Map;
@@ -22,17 +22,17 @@ import static pl.marekk.nlp.ocr.application.TikaHeaders.tikaHeaders;
 
 @Slf4j
 @RequiredArgsConstructor
-class TikaOcrClient implements Function<OcrCommand, OcrResponseFactory> {
+class TikaOcrClient implements Function<TextExtractionCommand, TextExtractionResponseFactory> {
   static final okhttp3.logging.HttpLoggingInterceptor.Logger httpLogger = log::info;
   private final OkHttpClient httpClient;
   private final String tikaUrl;
   private final Map<String, String> headers;
 
   @Override
-  public OcrResponseFactory apply(OcrCommand ocrCommand) {
-    Request request = buildRequest(ocrCommand);
+  public TextExtractionResponseFactory apply(TextExtractionCommand textExtractionCommand) {
+    Request request = buildRequest(textExtractionCommand);
     Response response = callHttp(request);
-    return TikaOcrResponseFactory.of(response);
+    return TikaTextExtractionResponseFactory.of(response);
   }
 
   private Response callHttp(Request request) {
@@ -50,11 +50,11 @@ class TikaOcrClient implements Function<OcrCommand, OcrResponseFactory> {
     }
   }
 
-  private Request buildRequest(OcrCommand ocrCommand) {
-    log.info("building the tika request from: {}", ocrCommand);
+  private Request buildRequest(TextExtractionCommand textExtractionCommand) {
+    log.info("building the tika request from: {}", textExtractionCommand);
     Request.Builder requestBuilder =
-        new Request.Builder().url(tikaUrl).put(RequestBody.create(ocrCommand.getContent()));
-    Map<String, String> tikaHeaders = tikaHeaders(ocrCommand, headers);
+        new Request.Builder().url(tikaUrl).put(RequestBody.create(textExtractionCommand.getContent()));
+    Map<String, String> tikaHeaders = tikaHeaders(textExtractionCommand, headers);
     if (tikaHeaders != null && !tikaHeaders.isEmpty()) {
       requestBuilder.headers(Headers.of(tikaHeaders));
     }

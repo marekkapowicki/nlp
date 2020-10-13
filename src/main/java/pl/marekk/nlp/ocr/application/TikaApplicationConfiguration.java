@@ -6,14 +6,14 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.marekk.nlp.ocr.domain.Ocr;
+import pl.marekk.nlp.ocr.domain.TextExtractor;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 @Configuration
 @EnableConfigurationProperties(TikaOcrProperties.class)
 @Slf4j
-class OcrApplicationConfiguration {
+class TikaApplicationConfiguration {
 
   @Bean
   HttpLoggingInterceptor loggingInterceptor() {
@@ -33,11 +33,11 @@ class OcrApplicationConfiguration {
             .callTimeout(tikaOcrProperties.getCallTimeoutInSecond(), SECONDS)
             .build();
     return new TikaOcrClient(
-        httpClient, tikaOcrProperties.getServerUrl(), tikaOcrProperties.getTikaHeaders());
+        httpClient, tikaOcrProperties.getServerUrl(), tikaOcrProperties.getTikaAdditionalHeaders());
   }
 
   @Bean
-  Ocr ocr(TikaOcrClient tikaOcrClient) {
-    return new Ocr(tikaOcrClient);
+  TextExtractor ocr(TikaOcrClient tikaOcrClient) {
+    return new TextExtractor(tikaOcrClient);
   }
 }

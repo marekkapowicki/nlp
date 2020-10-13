@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
-import pl.marekk.nlp.ocr.domain.OcrCommand;
-import pl.marekk.nlp.ocr.domain.OcrCommandBuilder;
+import pl.marekk.nlp.ocr.domain.TextEctractionCommandBuilder;
+import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
@@ -23,8 +23,8 @@ public class RestOcrRequest {
 
   private LanguageCode language;
 
-  Optional<OcrCommand> buildOcrCommand() {
-    return OcrCommandBuilder.buildOcrCommand(
+  Optional<TextExtractionCommand> buildTextExtractionCommand() {
+    return TextEctractionCommandBuilder.buildTextExtractionCommand(
         this::contentAsByteArray,
         fileToOcr.getContentType(),
         fileToOcr.getOriginalFilename(),

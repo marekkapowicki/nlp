@@ -1,7 +1,7 @@
 ocr:
   serverUrl: http://tika-server-ocr:9998/tika
   callTimeoutInSecond: 240
-  tikaHeaders:
+  tikaAdditionalHeaders:
     X-Tika-OCRtimeout: ${ocr.callTimeoutInSecond}
     X-Tika-PDFextractInlineImages: true
     X-Tika-PDFocrStrategy: OCR_ONLY

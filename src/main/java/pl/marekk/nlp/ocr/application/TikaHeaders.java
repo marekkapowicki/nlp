@@ -3,7 +3,7 @@ package pl.marekk.nlp.ocr.application;
 import com.neovisionaries.i18n.LanguageCode;
 import lombok.AllArgsConstructor;
 import lombok.experimental.UtilityClass;
-import pl.marekk.nlp.ocr.domain.OcrCommand;
+import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,9 +14,11 @@ import static pl.marekk.nlp.ocr.application.TikaHeaders.TikaLanguageHeader.tikaL
 
 @UtilityClass
 class TikaHeaders {
-  static Map<String, String> tikaHeaders(OcrCommand command, Map<String, String> headers) {
+  static Map<String, String> tikaHeaders(TextExtractionCommand command, Map<String, String> headers) {
     Optional<Map.Entry<String, String>> languageEntry = tikaLanguageHeader(command);
-    return languageEntry.map(entry -> addToMap(headers, entry)).orElseGet(() -> headers);
+    return languageEntry
+            .map(entry -> addToMap(headers, entry))
+            .orElseGet(() -> headers);
   }
 
   private static Map<String, String> addToMap(
@@ -34,8 +36,8 @@ class TikaHeaders {
 
   @UtilityClass
   static class TikaLanguageHeader {
-    static Optional<Map.Entry<String, String>> tikaLanguageHeader(OcrCommand ocrCommand) {
-      return tikaLanguageHeader(ocrCommand.getLanguage());
+    static Optional<Map.Entry<String, String>> tikaLanguageHeader(TextExtractionCommand textExtractionCommand) {
+      return tikaLanguageHeader(textExtractionCommand.getLanguage());
     }
 
     private static Optional<Map.Entry<String, String>> tikaLanguageHeader(

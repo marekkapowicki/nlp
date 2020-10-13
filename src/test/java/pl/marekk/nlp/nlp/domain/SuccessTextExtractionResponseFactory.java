@@ -2,16 +2,16 @@ package pl.marekk.nlp.nlp.domain;
 
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
-import pl.marekk.nlp.ocr.domain.OcrCommand;
-import pl.marekk.nlp.ocr.domain.OcrResponseFactory;
+import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
+import pl.marekk.nlp.ocr.domain.TextExtractionResponseFactory;
 
 import java.util.function.Function;
 
 @AllArgsConstructor
-class SuccessOcrResponseFactory implements OcrResponseFactory {
+class SuccessTextExtractionResponseFactory implements TextExtractionResponseFactory {
   private final String responseText;
-  static Function<OcrCommand, OcrResponseFactory> newInstance(String responseText){
-    return ocrCommand -> new SuccessOcrResponseFactory(responseText);
+  static Function<TextExtractionCommand, TextExtractionResponseFactory> newInstance(String responseText){
+    return ocrCommand -> new SuccessTextExtractionResponseFactory(responseText);
   }
   @Override
   public boolean isSuccessful() {

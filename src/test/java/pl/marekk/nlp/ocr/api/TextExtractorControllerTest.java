@@ -2,7 +2,7 @@ package pl.marekk.nlp.ocr.api;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Test;
-import pl.marekk.nlp.nlp.domain.TestOcr;
+import pl.marekk.nlp.nlp.domain.TestTextExtractor;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,13 +12,13 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
 
-public class OcrControllerTest {
+public class TextExtractorControllerTest {
 
   @Test
   public void processingTheSuccessFlow() throws IOException {
 
     //given
-    final OcrController ocrController = new OcrController(TestOcr.success("ocr is cool"));
+    final OcrController ocrController = new OcrController(TestTextExtractor.success("ocr is cool"));
     RestAssuredMockMvc.standaloneSetup(ocrController);
 
     // expect
@@ -38,7 +38,7 @@ public class OcrControllerTest {
   public void processingTheFailureFlow() throws IOException {
 
     //given
-    final OcrController ocrController = new OcrController(TestOcr.failure(503, "mock error"));
+    final OcrController ocrController = new OcrController(TestTextExtractor.failure(503, "mock error"));
     RestAssuredMockMvc.standaloneSetup(ocrController);
     // expect
     given()

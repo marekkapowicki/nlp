@@ -17,5 +17,5 @@ public class TikaOcrProperties {
 
   private int callTimeoutInSecond;
 
-  private Map<String, String> tikaHeaders;
+  private Map<String, String> tikaAdditionalHeaders;
 }

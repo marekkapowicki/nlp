@@ -4,11 +4,11 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class OcrSuccessResponse {
+public class TextExtractionSuccessResponse {
   private final String text;
 
-  public static OcrSuccessResponse success(String text) {
-    return new OcrSuccessResponse(text);
+  public static TextExtractionSuccessResponse success(String text) {
+    return new TextExtractionSuccessResponse(text);
   }
 
   public String text() {

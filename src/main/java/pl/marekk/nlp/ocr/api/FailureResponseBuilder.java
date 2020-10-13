@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import pl.marekk.nlp.ocr.domain.OcrFailureResponse;
+import pl.marekk.nlp.ocr.domain.TextExtractionFailureResponse;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -15,16 +15,16 @@ import java.util.Map;
 class FailureResponseBuilder {
 
   static ResponseEntity<Map<String, Object>> buildFailureResponse(
-      OcrFailureResponse failureResponse) {
+      TextExtractionFailureResponse failureResponse) {
     log.info("preparing failure response {} ", failureResponse.statusCode());
     return new ResponseEntity(buildFailureBody(failureResponse), statusCode(failureResponse));
   }
 
-  private static HttpStatus statusCode(OcrFailureResponse failureResponse) {
+  private static HttpStatus statusCode(TextExtractionFailureResponse failureResponse) {
     return HttpStatus.valueOf(failureResponse.statusCode());
   }
 
-  private static Map<String, Object> buildFailureBody(OcrFailureResponse failureResponse) {
+  private static Map<String, Object> buildFailureBody(TextExtractionFailureResponse failureResponse) {
     Map<String, Object> errorAttributes = new HashMap<>();
     errorAttributes.put("timestamp", new Date());
     errorAttributes.put("status", failureResponse.statusCode());

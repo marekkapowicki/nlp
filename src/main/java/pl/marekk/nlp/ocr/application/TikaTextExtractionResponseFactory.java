@@ -5,16 +5,16 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import pl.marekk.nlp.ocr.domain.OcrResponseFactory;
+import pl.marekk.nlp.ocr.domain.TextExtractionResponseFactory;
 
 import java.util.Optional;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-class TikaOcrResponseFactory implements OcrResponseFactory {
+class TikaTextExtractionResponseFactory implements TextExtractionResponseFactory {
   private final Response httpResponse;
 
-  static TikaOcrResponseFactory of(Response httpResponse) {
-    return new TikaOcrResponseFactory(httpResponse);
+  static TikaTextExtractionResponseFactory of(Response httpResponse) {
+    return new TikaTextExtractionResponseFactory(httpResponse);
   }
 
   @Override
