@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.application;
+package pl.marekk.nlp.textextraction.application;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +11,14 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.http.HttpStatus;
-import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
-import pl.marekk.nlp.ocr.domain.TextExtractionResponseFactory;
+import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.function.Function;
 
-import static pl.marekk.nlp.ocr.application.TikaHeaders.tikaHeaders;
+import static pl.marekk.nlp.textextraction.application.TikaHeaders.tikaHeaders;
 
 @Slf4j
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.api;
+package pl.marekk.nlp.textextraction.api;
 
 import com.neovisionaries.i18n.LanguageCode;
 import io.vavr.API;
@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
-import pl.marekk.nlp.ocr.domain.TextEctractionCommandBuilder;
-import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextEctractionCommandBuilder;
+import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.application;
+package pl.marekk.nlp.textextraction.application;
 
 import lombok.Getter;
 import lombok.Setter;

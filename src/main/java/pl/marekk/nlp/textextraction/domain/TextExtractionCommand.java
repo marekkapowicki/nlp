@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.domain;
+package pl.marekk.nlp.textextraction.domain;
 
 import com.neovisionaries.i18n.LanguageCode;
 import lombok.ToString;

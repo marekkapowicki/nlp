@@ -1,10 +1,10 @@
-package pl.marekk.nlp.ocr.api;
+package pl.marekk.nlp.textextraction.api;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import pl.marekk.nlp.ocr.domain.TextExtractionFailureResponse;
+import pl.marekk.nlp.textextraction.domain.TextExtractionFailureResponse;
 
 import java.util.Date;
 import java.util.HashMap;

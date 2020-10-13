@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.api;
+package pl.marekk.nlp.textextraction.api;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Test;

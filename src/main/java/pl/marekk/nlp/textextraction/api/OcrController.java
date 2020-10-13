@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.api;
+package pl.marekk.nlp.textextraction.api;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
-import pl.marekk.nlp.ocr.domain.TextExtractor;
+import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextExtractor;
 
 import javax.validation.Valid;
 import java.util.Map;

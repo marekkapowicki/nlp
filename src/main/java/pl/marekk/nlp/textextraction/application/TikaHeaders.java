@@ -1,16 +1,16 @@
-package pl.marekk.nlp.ocr.application;
+package pl.marekk.nlp.textextraction.application;
 
 import com.neovisionaries.i18n.LanguageCode;
 import lombok.AllArgsConstructor;
 import lombok.experimental.UtilityClass;
-import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static pl.marekk.nlp.ocr.application.TikaHeaders.TikaLanguageHeader.tikaLanguageHeader;
+import static pl.marekk.nlp.textextraction.application.TikaHeaders.TikaLanguageHeader.tikaLanguageHeader;
 
 @UtilityClass
 class TikaHeaders {

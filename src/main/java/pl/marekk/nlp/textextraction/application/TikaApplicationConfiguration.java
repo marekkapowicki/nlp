@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.application;
+package pl.marekk.nlp.textextraction.application;
 
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import pl.marekk.nlp.ocr.domain.TextExtractor;
+import pl.marekk.nlp.textextraction.domain.TextExtractor;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 

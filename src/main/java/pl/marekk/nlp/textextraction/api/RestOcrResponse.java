@@ -1,9 +1,9 @@
-package pl.marekk.nlp.ocr.api;
+package pl.marekk.nlp.textextraction.api;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Value;
-import pl.marekk.nlp.ocr.domain.TextExtractionSuccessResponse;
+import pl.marekk.nlp.textextraction.domain.TextExtractionSuccessResponse;
 
 @Value
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

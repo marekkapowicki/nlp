@@ -2,8 +2,8 @@ package pl.marekk.nlp.nlp.domain;
 
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.NotImplementedException;
-import pl.marekk.nlp.ocr.domain.TextExtractionCommand;
-import pl.marekk.nlp.ocr.domain.TextExtractionResponseFactory;
+import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
 
 import java.util.function.Function;
 

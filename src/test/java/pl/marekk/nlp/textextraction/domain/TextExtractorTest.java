@@ -1,4 +1,4 @@
-package pl.marekk.nlp.ocr.domain;
+package pl.marekk.nlp.textextraction.domain;
 
 
 import io.vavr.control.Either;

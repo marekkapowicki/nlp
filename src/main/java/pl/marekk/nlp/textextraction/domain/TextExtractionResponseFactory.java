@@ -1,10 +1,10 @@
-package pl.marekk.nlp.ocr.domain;
+package pl.marekk.nlp.textextraction.domain;
 
 import io.vavr.control.Either;
 import org.springframework.util.StringUtils;
 
-import static pl.marekk.nlp.ocr.domain.TextExtractionFailureResponse.failure;
-import static pl.marekk.nlp.ocr.domain.TextExtractionSuccessResponse.success;
+import static pl.marekk.nlp.textextraction.domain.TextExtractionFailureResponse.failure;
+import static pl.marekk.nlp.textextraction.domain.TextExtractionSuccessResponse.success;
 
 public interface TextExtractionResponseFactory {
 

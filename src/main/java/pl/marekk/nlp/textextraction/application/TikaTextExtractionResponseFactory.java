@@ -1,11 +1,11 @@
-package pl.marekk.nlp.ocr.application;
+package pl.marekk.nlp.textextraction.application;
 
 import io.vavr.API;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import pl.marekk.nlp.ocr.domain.TextExtractionResponseFactory;
+import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
 
 import java.util.Optional;
 
