@@ -2,7 +2,7 @@ package pl.marekk.nlp.textextraction.api;
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Test;
-import pl.marekk.nlp.nlp.domain.TestTextExtractor;
+import pl.marekk.nlp.textextraction.domain.TestTextExtractor;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,8 +1,4 @@
-package pl.marekk.nlp.nlp.domain;
-
-import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
-import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
-import pl.marekk.nlp.textextraction.domain.TextExtractor;
+package pl.marekk.nlp.textextraction.domain;
 
 import java.util.function.Function;
 

@@ -11,14 +11,13 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.springframework.http.HttpStatus;
+import pl.marekk.nlp.textextraction.application.headers.TikaHeaders;
 import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
 import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.function.Function;
-
-import static pl.marekk.nlp.textextraction.application.TikaHeaders.tikaHeaders;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -53,8 +52,10 @@ class TikaOcrClient implements Function<TextExtractionCommand, TextExtractionRes
   private Request buildRequest(TextExtractionCommand textExtractionCommand) {
     log.info("building the tika request from: {}", textExtractionCommand);
     Request.Builder requestBuilder =
-        new Request.Builder().url(tikaUrl).put(RequestBody.create(textExtractionCommand.getContent()));
-    Map<String, String> tikaHeaders = tikaHeaders(textExtractionCommand, headers);
+        new Request.Builder()
+                .url(tikaUrl)
+                .put(RequestBody.create(textExtractionCommand.getContent()));
+    Map<String, String> tikaHeaders = TikaHeaders.toTikaHeaders(textExtractionCommand);
     if (tikaHeaders != null && !tikaHeaders.isEmpty()) {
       requestBuilder.headers(Headers.of(tikaHeaders));
     }
