@@ -2,8 +2,10 @@ text-extraction:
   serverUrl: http://tika-server-ocr:9998/tika
   callTimeoutInSecond: 240
   ocrAdditionalHeaders:
-    X-Tika-OCRtimeout: ${text-extraction.callTimeoutInSecond}
     X-Tika-PDFocrDPI: 600
+    X-Tika-OCRtimeout: ${text-extraction.callTimeoutInSecond}
+    X-Tika-OCRenableImageProcessing: 1
+    X-Tika-OCRApplyRotation: true
 server:
   error:
     include-message: always
