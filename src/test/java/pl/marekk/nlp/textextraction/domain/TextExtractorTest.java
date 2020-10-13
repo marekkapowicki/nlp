@@ -2,7 +2,7 @@ package pl.marekk.nlp.textextraction.domain;
 
 
 import io.vavr.control.Either;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.vavr.api.VavrAssertions.assertThat;
 
