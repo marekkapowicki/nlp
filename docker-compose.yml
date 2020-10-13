@@ -1,6 +1,17 @@
 version: '2'
 
 services:
+  mongo:
+    image: mongo:4.4.1-bionic
+    container_name: mongo-db
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_INITDB_DATABASE=nlp
+      - MONGO_INITDB_ROOT_USERNAME=nlp
+      - MONGO_INITDB_ROOT_PASSWORD=nlp123
+    networks:
+      - nlp-network
   tika:
     image: 'apache/tika:1.24-full'
     ports:
@@ -16,6 +27,7 @@ services:
     container_name: ocr-app
     links:
       - tika
+      - mongo
     networks:
       - nlp-network
 networks:

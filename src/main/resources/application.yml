@@ -1,3 +1,10 @@
+spring.data.mongodb:
+  authentication-database: admin
+  host: mongo-db
+  username: nlp
+  password: nlp123
+  database: nlp
+
 text-extraction:
   serverUrl: http://tika-server-ocr:9998/tika
   callTimeoutInSecond: 240
