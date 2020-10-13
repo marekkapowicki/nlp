@@ -16,7 +16,6 @@ class TikaTextExtractionResponseFactory implements TextExtractionResponseFactory
   private final Response httpResponse;
 
   static TikaTextExtractionResponseFactory of(Response httpResponse) {
-    log.info("response {}", httpResponse);
     return new TikaTextExtractionResponseFactory(httpResponse);
   }
 
