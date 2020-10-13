@@ -17,12 +17,12 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "api/actions")
 @AllArgsConstructor
-class OcrController {
+class TextExctractionController {
 
   private final TextExtractor textExtractor;
 
-  @PostMapping(value = "/ocr", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-  ResponseEntity<Map<String, Object>> processOcr(@Valid RestOcrRequest request) {
+  @PostMapping(value = "/extractText", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  ResponseEntity<Map<String, Object>> processOcr(@Valid RestTextExtractionRequest request) {
     log.info("processing the ocr for {}", request);
     return request
         .buildTextExtractionCommand()

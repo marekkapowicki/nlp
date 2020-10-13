@@ -16,7 +16,7 @@ public class SwaggerConfiguration {
   public Docket api() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("pl.marekk.nlp.ocr.api"))
+        .apis(RequestHandlerSelectors.basePackage("pl.marekk.nlp.textextraction.api"))
         .paths(PathSelectors.any())
         .build();
   }

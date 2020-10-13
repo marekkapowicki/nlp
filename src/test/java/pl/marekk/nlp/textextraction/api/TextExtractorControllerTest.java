@@ -18,15 +18,15 @@ public class TextExtractorControllerTest {
   public void processingTheSuccessFlow() throws IOException {
 
     //given
-    final OcrController ocrController = new OcrController(TestTextExtractor.success("ocr is cool"));
-    RestAssuredMockMvc.standaloneSetup(ocrController);
+    final TextExctractionController textExctractionController = new TextExctractionController(TestTextExtractor.success("ocr is cool"));
+    RestAssuredMockMvc.standaloneSetup(textExctractionController);
 
     // expect
     given()
         .multiPart("fileToOcr", sampleFile())
         .contentType("multipart/form-data")
         .when()
-        .post("/api/actions/ocr")
+        .post("/api/actions/extractText")
     .then()
         .log()
         .ifValidationFails()
@@ -38,14 +38,14 @@ public class TextExtractorControllerTest {
   public void processingTheFailureFlow() throws IOException {
 
     //given
-    final OcrController ocrController = new OcrController(TestTextExtractor.failure(503, "mock error"));
-    RestAssuredMockMvc.standaloneSetup(ocrController);
+    final TextExctractionController textExctractionController = new TextExctractionController(TestTextExtractor.failure(503, "mock error"));
+    RestAssuredMockMvc.standaloneSetup(textExctractionController);
     // expect
     given()
         .multiPart("fileToOcr", sampleFile())
         .contentType("multipart/form-data")
     .when()
-        .post("/api/actions/ocr")
+        .post("/api/actions/extractText")
     .then()
         .log()
         .ifValidationFails()

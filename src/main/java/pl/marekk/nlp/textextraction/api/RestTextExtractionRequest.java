@@ -17,7 +17,7 @@ import static org.springframework.util.StreamUtils.copyToByteArray;
 @Slf4j
 @AllArgsConstructor
 @Data
-public class RestOcrRequest {
+public class RestTextExtractionRequest {
   @NotNull(message = "file to upload is null")
   private MultipartFile fileToOcr;
 

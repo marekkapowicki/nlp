@@ -36,6 +36,7 @@ class TikaOcrClient implements Function<TextExtractionCommand, TextExtractionRes
 
   private Response callHttp(Request request) {
     try {
+      log.info("calling tika with {}", request.headers());
       return httpClient.newCall(request).execute();
     } catch (IOException e) {
       log.warn("error during call tika server {}", e.getMessage());
