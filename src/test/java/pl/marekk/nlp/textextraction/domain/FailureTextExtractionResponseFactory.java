@@ -9,9 +9,12 @@ import java.util.function.Function;
 class FailureTextExtractionResponseFactory implements TextExtractionResponseFactory {
   private final int expectedCode;
   private final String expectedMessage;
-  static Function<TextExtractionCommand, TextExtractionResponseFactory> newInstance(int expectedCode, String expectedMessage){
+
+  static Function<TextExtractionCommand, TextExtractionResponseFactory> newInstance(
+      int expectedCode, String expectedMessage) {
     return ocrCommand -> new FailureTextExtractionResponseFactory(expectedCode, expectedMessage);
   }
+
   @Override
   public boolean isSuccessful() {
     return false;
@@ -33,7 +36,5 @@ class FailureTextExtractionResponseFactory implements TextExtractionResponseFact
   }
 
   @Override
-  public void closeStream() {
-
-  }
+  public void closeStream() {}
 }

@@ -9,15 +9,15 @@ import java.util.function.Supplier;
 
 @Slf4j
 @UtilityClass
-public class TextEctractionCommandBuilder {
+public class TextExtractionCommandBuilder {
 
-  public static Optional<TextExtractionCommand> buildTextExtractionCommand(
+  public static Optional<TextExtractionInput> buildTextExtractionCommand(
       Supplier<byte[]> contentSupplier,
       String contentType,
       String fileName,
       LanguageCode language) {
     try {
-      return Optional.of(TextExtractionCommand.of(contentSupplier.get(), contentType, language));
+      return Optional.of(TextExtractionInput.of(contentSupplier.get(), contentType, language));
     } catch (IllegalStateException e) {
       log.warn("issue during reading {}: {}", fileName, e.getMessage());
       return Optional.empty();

@@ -14,11 +14,18 @@ import static org.springframework.http.HttpStatus.SERVICE_UNAVAILABLE;
 
 public class TextExtractorControllerTest {
 
+  private static File sampleFile() throws IOException {
+    File tempFile = File.createTempFile("sample", "pdf");
+    tempFile.deleteOnExit();
+    return tempFile;
+  }
+
   @Test
   public void processingTheSuccessFlow() throws IOException {
 
-    //given
-    final TextExctractionController textExctractionController = new TextExctractionController(TestTextExtractor.success("ocr is cool"));
+    // given
+    final TextExctractionController textExctractionController =
+        new TextExctractionController(TestTextExtractor.success("ocr is cool"));
     RestAssuredMockMvc.standaloneSetup(textExctractionController);
 
     // expect
@@ -27,7 +34,7 @@ public class TextExtractorControllerTest {
         .contentType("multipart/form-data")
         .when()
         .post("/api/actions/extractText")
-    .then()
+        .then()
         .log()
         .ifValidationFails()
         .statusCode(OK.value())
@@ -37,25 +44,20 @@ public class TextExtractorControllerTest {
   @Test
   public void processingTheFailureFlow() throws IOException {
 
-    //given
-    final TextExctractionController textExctractionController = new TextExctractionController(TestTextExtractor.failure(503, "mock error"));
+    // given
+    final TextExctractionController textExctractionController =
+        new TextExctractionController(TestTextExtractor.failure(503, "mock error"));
     RestAssuredMockMvc.standaloneSetup(textExctractionController);
     // expect
     given()
         .multiPart("fileToOcr", sampleFile())
         .contentType("multipart/form-data")
-    .when()
+        .when()
         .post("/api/actions/extractText")
-    .then()
+        .then()
         .log()
         .ifValidationFails()
         .statusCode(SERVICE_UNAVAILABLE.value())
         .body("message", equalTo("mock error"));
-  }
-
-  private static File sampleFile() throws IOException {
-    File tempFile = File.createTempFile("sample", "pdf");
-    tempFile.deleteOnExit();
-    return tempFile;
   }
 }

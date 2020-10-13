@@ -3,6 +3,7 @@ package pl.marekk.nlp.textextraction.application;
 import io.vavr.API;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
@@ -10,10 +11,12 @@ import pl.marekk.nlp.textextraction.domain.TextExtractionResponseFactory;
 import java.util.Optional;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Slf4j
 class TikaTextExtractionResponseFactory implements TextExtractionResponseFactory {
   private final Response httpResponse;
 
   static TikaTextExtractionResponseFactory of(Response httpResponse) {
+    log.info("response {}", httpResponse);
     return new TikaTextExtractionResponseFactory(httpResponse);
   }
 

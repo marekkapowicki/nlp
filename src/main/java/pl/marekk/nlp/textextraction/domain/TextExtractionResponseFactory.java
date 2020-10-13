@@ -7,16 +7,20 @@ import static pl.marekk.nlp.textextraction.domain.TextExtractionFailureResponse.
 import static pl.marekk.nlp.textextraction.domain.TextExtractionSuccessResponse.success;
 
 public interface TextExtractionResponseFactory {
-
-  default boolean isEmpty(){
-    return StringUtils.isEmpty(bodyAsString().trim());
+  default boolean isEmpty(String body) {
+    return StringUtils.isEmpty(body.trim());
   }
+
   default Either<TextExtractionFailureResponse, TextExtractionSuccessResponse> createResponse() {
     try {
       if (!isSuccessful()) {
         return Either.left(failure(code(), message()));
       }
-      return Either.right(success(bodyAsString()));
+      String bodyAsString = bodyAsString();
+      if (isEmpty(bodyAsString)) {
+        return Either.left(failure(code(), "extracted text is empty"));
+      }
+      return Either.right(success(bodyAsString));
     } catch (IllegalStateException e) {
       return Either.left(failure(e));
     } finally {

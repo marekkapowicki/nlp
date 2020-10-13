@@ -8,9 +8,12 @@ import java.util.function.Function;
 @AllArgsConstructor
 class SuccessTextExtractionResponseFactory implements TextExtractionResponseFactory {
   private final String responseText;
-  static Function<TextExtractionCommand, TextExtractionResponseFactory> newInstance(String responseText){
+
+  static Function<TextExtractionCommand, TextExtractionResponseFactory> newInstance(
+      String responseText) {
     return ocrCommand -> new SuccessTextExtractionResponseFactory(responseText);
   }
+
   @Override
   public boolean isSuccessful() {
     return true;
@@ -24,7 +27,7 @@ class SuccessTextExtractionResponseFactory implements TextExtractionResponseFact
   @Override
   public String message() {
 
-    throw  new NotImplementedException("no way to invoke");
+    throw new NotImplementedException("no way to invoke");
   }
 
   @Override
@@ -33,7 +36,5 @@ class SuccessTextExtractionResponseFactory implements TextExtractionResponseFact
   }
 
   @Override
-  public void closeStream() {
-
-  }
+  public void closeStream() {}
 }

@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
-import pl.marekk.nlp.textextraction.domain.TextEctractionCommandBuilder;
-import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextExtractionCommandBuilder;
+import pl.marekk.nlp.textextraction.domain.TextExtractionInput;
 
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
@@ -23,8 +23,8 @@ public class RestTextExtractionRequest {
 
   private LanguageCode language;
 
-  Optional<TextExtractionCommand> buildTextExtractionCommand() {
-    return TextEctractionCommandBuilder.buildTextExtractionCommand(
+  Optional<TextExtractionInput> buildTextExtractionCommand() {
+    return TextExtractionCommandBuilder.buildTextExtractionCommand(
         this::contentAsByteArray,
         fileToOcr.getContentType(),
         fileToOcr.getOriginalFilename(),

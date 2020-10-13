@@ -37,7 +37,7 @@ class TikaApplicationConfiguration {
   }
 
   @Bean
-  TextExtractor ocr(TikaOcrClient tikaOcrClient) {
+  TextExtractor textExtractor(TikaOcrClient tikaOcrClient) {
     return new TextExtractor(tikaOcrClient);
   }
 }

@@ -24,7 +24,8 @@ class FailureResponseBuilder {
     return HttpStatus.valueOf(failureResponse.statusCode());
   }
 
-  private static Map<String, Object> buildFailureBody(TextExtractionFailureResponse failureResponse) {
+  private static Map<String, Object> buildFailureBody(
+      TextExtractionFailureResponse failureResponse) {
     Map<String, Object> errorAttributes = new HashMap<>();
     errorAttributes.put("timestamp", new Date());
     errorAttributes.put("status", failureResponse.statusCode());

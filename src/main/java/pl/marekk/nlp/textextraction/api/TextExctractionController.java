@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.marekk.nlp.textextraction.domain.TextExtractionCommand;
+import pl.marekk.nlp.textextraction.domain.TextExtractionInput;
 import pl.marekk.nlp.textextraction.domain.TextExtractor;
 
 import javax.validation.Valid;
@@ -30,8 +30,9 @@ class TextExctractionController {
         .orElseGet(() -> ResponseEntity.badRequest().build());
   }
 
-  private ResponseEntity<Map<String, Object>> processOcr(TextExtractionCommand textExtractionCommand) {
-    return textExtractor.extractText(textExtractionCommand)
+  private ResponseEntity<Map<String, Object>> processOcr(TextExtractionInput textExtractionInput) {
+    return textExtractor
+        .extractText(textExtractionInput)
         .fold(
             FailureResponseBuilder::buildFailureResponse,
             SuccessResponseBuilder::buildSuccessRestResponse);

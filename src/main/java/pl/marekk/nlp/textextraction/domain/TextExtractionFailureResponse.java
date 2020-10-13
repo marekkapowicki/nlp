@@ -2,8 +2,10 @@ package pl.marekk.nlp.textextraction.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class TextExtractionFailureResponse {
   private final int statusCode;
   private final String cause;
