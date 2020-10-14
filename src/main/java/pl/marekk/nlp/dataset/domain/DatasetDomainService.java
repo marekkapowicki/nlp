@@ -20,6 +20,7 @@ public class DatasetDomainService {
     }
 
     public Optional<Dataset> findById(UUID uuid) {
-        return datasetRepository.getById(uuid.toString());
+        return datasetRepository.getById(uuid.toString())
+                .map(dataset -> dataset.withDatasetRepository(datasetRepository));
     }
 }
