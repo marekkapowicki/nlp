@@ -11,6 +11,11 @@ import pl.marekk.nlp.dataset.domain.DatasetRepository;
 class DatasetApplicationConfiguration {
 
     @Bean
+    DatasetFacade datasetFacade(DatasetDomainService datasetDomainService) {
+        return new DatasetFacade(datasetDomainService);
+    }
+
+    @Bean
     DatasetDomainService datasetDomainService(DatasetRepository datasetRepository) {
         return DatasetDomainService.of(datasetRepository);
     }

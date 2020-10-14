@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class DatasetDomainService {
@@ -19,8 +18,8 @@ public class DatasetDomainService {
         return datasetFactory.create(createDatasetCommand, datasetRepository).createNew();
     }
 
-    public Optional<Dataset> findById(UUID uuid) {
-        return datasetRepository.getById(uuid.toString())
+    public Optional<Dataset> findById(String datasetId) {
+        return datasetRepository.getById(datasetId)
                 .map(dataset -> dataset.withDatasetRepository(datasetRepository));
     }
 }
