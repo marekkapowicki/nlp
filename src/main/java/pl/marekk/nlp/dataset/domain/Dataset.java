@@ -1,4 +1,4 @@
-package pl.marekk.nlp.project.domain;
+package pl.marekk.nlp.dataset.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,13 +12,13 @@ import org.springframework.data.annotation.Transient;
 import java.util.UUID;
 
 @Slf4j
-@ToString(exclude = "projectRepository")
+@ToString(exclude = "datasetRepository")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Project {
+public class Dataset {
 
-    static Project of(UUID uuid, String name, String description, ProjectRepository projectRepository) {
-        return new Project(uuid.toString(), name, description, projectRepository);
+    static Dataset of(UUID uuid, String name, String description, DatasetRepository datasetRepository) {
+        return new Dataset(uuid.toString(), name, description, datasetRepository);
     }
 
     @Id
@@ -29,16 +29,16 @@ public class Project {
     private String description;
 
     @Transient
-    private ProjectRepository projectRepository;
+    private DatasetRepository datasetRepository;
 
 
-    Project createNew() {
+    Dataset createNew() {
         log.info("create new project {}", this);
-        return projectRepository.save(this).withProjectRepository(projectRepository);
+        return datasetRepository.save(this).withDatasetRepository(datasetRepository);
     }
 
-    private Project withProjectRepository(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
+    Dataset withDatasetRepository(DatasetRepository datasetRepository) {
+        this.datasetRepository = datasetRepository;
         return this;
     }
 
