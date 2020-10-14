@@ -1,5 +1,6 @@
 package pl.marekk.nlp.dataset.api;
 
+import io.vavr.Tuple2;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.marekk.nlp.dataset.application.DatasetFacade;
 import pl.marekk.nlp.dataset.domain.Dataset;
+import pl.marekk.nlp.dataset.domain.Document;
 
+import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.UUID;
 
 import static pl.marekk.nlp.dataset.api.DatasetDtoConverter.convert;
@@ -30,9 +34,19 @@ public class DatasetController {
         return convert(dataset);
     }
 
+    @PostMapping(value = "/{datasetId}/documents")
+    DocumentDto addDocument(@PathVariable("datasetId") UUID datasetId,
+                            @Validated @RequestBody @NotNull RestCreateDocumentRequest request) {
+        Dataset dataset = datasetFacade.findById(datasetId);
+        Document document = dataset.addDocument(request.toCreateCreateDocumentCommand())._2;
+        return DocumentDto.of(document);
+
+    }
+
     @GetMapping(value = "/{id}")
-    DatasetDto findById(@PathVariable("id") UUID datasetId) {
+    EnhancedDatasetDto findById(@PathVariable("id") UUID datasetId) {
         log.info("finding dataset by id {}", datasetId);
-        return convert(datasetFacade.findById(datasetId));
+        Tuple2<Dataset, List<Document>> datasetTuple = datasetFacade.findById(datasetId).withDocuments();
+        return EnhancedDatasetDto.of(datasetTuple._1, datasetTuple._2);
     }
 }

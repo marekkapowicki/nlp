@@ -5,8 +5,8 @@ import lombok.Value;
 import java.util.UUID;
 
 @Value
-public class CreateDatasetCommand {
+public class CreateDocumentCommand {
     UUID id;
     String name;
-    String description;
+    String text;
 }

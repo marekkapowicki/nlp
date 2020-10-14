@@ -5,6 +5,7 @@ import lombok.ToString;
 import pl.marekk.nlp.dataset.domain.CreateDatasetCommand;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.UUID;
 
 @ToString
 @Data
@@ -15,6 +16,6 @@ public class RestCreateDatasetRequest {
     private String description;
 
     public CreateDatasetCommand toCreateDatasetCommand() {
-        return new CreateDatasetCommand(name, description);
+        return new CreateDatasetCommand(UUID.randomUUID(), name, description);
     }
 }

@@ -1,5 +1,7 @@
 package pl.marekk.nlp.dataset.domain;
 
+import io.vavr.Tuple;
+import io.vavr.Tuple2;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -17,8 +20,8 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Dataset {
 
-    static Dataset of(UUID uuid, String name, String description, DatasetRepository datasetRepository) {
-        return new Dataset(uuid.toString(), name, description, datasetRepository);
+    static Dataset of(UUID uuid, String name, String description, DatasetRepository datasetRepository, DocumentRepository documentRepository) {
+        return new Dataset(uuid.toString(), name, description, datasetRepository, documentRepository);
     }
 
     @Id
@@ -30,16 +33,38 @@ public class Dataset {
 
     @Transient
     private DatasetRepository datasetRepository;
+    @Transient
+    private DocumentRepository documentRepository;
 
 
     Dataset createNew() {
         log.info("create new project {}", this);
-        return datasetRepository.save(this).withDatasetRepository(datasetRepository);
+        return datasetRepository.save(this)
+                .withDatasetRepository(datasetRepository)
+                .withDocumentRepository(documentRepository);
     }
 
     Dataset withDatasetRepository(DatasetRepository datasetRepository) {
         this.datasetRepository = datasetRepository;
         return this;
+    }
+
+    Dataset withDocumentRepository(DocumentRepository documentRepository) {
+        this.documentRepository = documentRepository;
+        return this;
+    }
+
+    public Tuple2<Dataset, Document> addDocument(CreateDocumentCommand createDocumentCommand) {
+        Document document = Document.of(createDocumentCommand.getId(), createDocumentCommand.getName(), createDocumentCommand.getText())
+                .withDatasetId(id);
+        Document saved = documentRepository.save(document);
+        return Tuple.of(this, saved);
+
+    }
+
+    public Tuple2<Dataset, List<Document>> withDocuments() {
+        List<Document> documents = documentRepository.getByDatasetId(id);
+        return Tuple.of(this, documents);
     }
 
     public UUID id() {

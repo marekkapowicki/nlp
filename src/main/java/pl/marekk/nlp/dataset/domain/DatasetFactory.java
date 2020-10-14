@@ -2,11 +2,9 @@ package pl.marekk.nlp.dataset.domain;
 
 import lombok.AllArgsConstructor;
 
-import java.util.UUID;
-
 @AllArgsConstructor
 class DatasetFactory {
-    Dataset create(CreateDatasetCommand createDatasetCommand, DatasetRepository datasetRepository) {
-        return Dataset.of(UUID.randomUUID(), createDatasetCommand.getName(), createDatasetCommand.getDescription(), datasetRepository);
+    Dataset create(CreateDatasetCommand createDatasetCommand, DatasetRepository datasetRepository, DocumentRepository documentRepository) {
+        return Dataset.of(createDatasetCommand.getId(), createDatasetCommand.getName(), createDatasetCommand.getDescription(), datasetRepository, documentRepository);
     }
 }
