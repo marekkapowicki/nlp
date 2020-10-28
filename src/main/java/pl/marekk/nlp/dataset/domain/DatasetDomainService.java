@@ -11,18 +11,24 @@ public class DatasetDomainService {
     private final DocumentRepository documentRepository;
     private final DatasetFactory datasetFactory;
 
-    public static DatasetDomainService of(DatasetRepository datasetRepository, DocumentRepository documentRepository) {
+    public static DatasetDomainService of(
+            DatasetRepository datasetRepository, DocumentRepository documentRepository) {
         return new DatasetDomainService(datasetRepository, documentRepository, new DatasetFactory());
     }
 
     public Dataset createNew(CreateDatasetCommand createDatasetCommand) {
-        return datasetFactory.create(createDatasetCommand, datasetRepository, documentRepository).createNew();
+        return datasetFactory
+                .create(createDatasetCommand, datasetRepository, documentRepository)
+                .createNew();
     }
 
     public Optional<Dataset> findById(String datasetId) {
-        return datasetRepository.getById(datasetId)
-                .map(dataset -> dataset
-                        .withDatasetRepository(datasetRepository)
-                        .withDocumentRepository(documentRepository));
+        return datasetRepository
+                .getById(datasetId)
+                .map(
+                        dataset ->
+                                dataset
+                                        .withDatasetRepository(datasetRepository)
+                                        .withDocumentRepository(documentRepository));
     }
 }

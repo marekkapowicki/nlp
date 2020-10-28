@@ -17,7 +17,8 @@ class DatasetApplicationConfiguration {
     }
 
     @Bean
-    DatasetDomainService datasetDomainService(DatasetRepository datasetRepository, DocumentRepository documentRepository) {
+    DatasetDomainService datasetDomainService(
+            DatasetRepository datasetRepository, DocumentRepository documentRepository) {
         return DatasetDomainService.of(datasetRepository, documentRepository);
     }
 }

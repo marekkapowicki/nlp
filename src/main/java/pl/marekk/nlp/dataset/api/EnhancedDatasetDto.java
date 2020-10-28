@@ -11,14 +11,14 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 
 @Value
 public class EnhancedDatasetDto {
-  public static EnhancedDatasetDto of(Dataset dataset, List<Document> documents) {
-    List<DocumentDto> documentDtos =
-            isEmpty(documents)
-                    ? null
-                    : documents.stream().map(DocumentDto::of).collect(Collectors.toList());
-    return new EnhancedDatasetDto(DatasetDtoConverter.convert(dataset), documentDtos);
-  }
+    DatasetDto datasetDto;
+    List<DocumentDto> documents;
 
-  DatasetDto datasetDto;
-  List<DocumentDto> documents;
+    public static EnhancedDatasetDto of(Dataset dataset, List<Document> documents) {
+        List<DocumentDto> documentDtos =
+                isEmpty(documents)
+                        ? null
+                        : documents.stream().map(DocumentDto::of).collect(Collectors.toList());
+        return new EnhancedDatasetDto(DatasetDtoConverter.convert(dataset), documentDtos);
+    }
 }

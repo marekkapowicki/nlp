@@ -21,20 +21,22 @@ class TextExctractionController {
 
   private final TextExtractor textExtractor;
 
-  @PostMapping(value = "/extractText", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-  ResponseEntity<Map<String, Object>> processTextExtraction(@Valid RestTextExtractionRequest request) {
-    log.info("processing the ocr for {}", request);
-    return request
-        .buildTextExtractionCommand()
-        .map(this::processTextExtraction)
-        .orElseGet(() -> ResponseEntity.badRequest().build());
-  }
+    @PostMapping(value = "/extractText", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    ResponseEntity<Map<String, Object>> processTextExtraction(
+            @Valid RestTextExtractionRequest request) {
+        log.info("processing the ocr for {}", request);
+        return request
+                .buildTextExtractionCommand()
+                .map(this::processTextExtraction)
+                .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
 
-  private ResponseEntity<Map<String, Object>> processTextExtraction(TextExtractionInput textExtractionInput) {
-    return textExtractor
-        .extractText(textExtractionInput)
-        .fold(
-            FailureResponseBuilder::buildFailureResponse,
-            SuccessResponseBuilder::buildSuccessRestResponse);
-  }
+    private ResponseEntity<Map<String, Object>> processTextExtraction(
+            TextExtractionInput textExtractionInput) {
+        return textExtractor
+                .extractText(textExtractionInput)
+                .fold(
+                        FailureResponseBuilder::buildFailureResponse,
+                        SuccessResponseBuilder::buildSuccessRestResponse);
+    }
 }

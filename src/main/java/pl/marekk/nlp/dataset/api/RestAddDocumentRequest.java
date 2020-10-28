@@ -6,7 +6,7 @@ import pl.marekk.nlp.dataset.domain.CreateDocumentCommand;
 import java.util.UUID;
 
 @Value
-public class RestCreateDocumentRequest {
+public class RestAddDocumentRequest {
     String name;
     String text;
 

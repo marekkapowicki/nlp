@@ -10,12 +10,12 @@ import java.util.UUID;
 @ToString
 @Data
 public class RestCreateDatasetRequest {
-    @NotEmpty
-    private String name;
-    @NotEmpty
-    private String description;
+  @NotEmpty
+  private String name;
+  @NotEmpty
+  private String description;
 
-    public CreateDatasetCommand toCreateDatasetCommand() {
-        return new CreateDatasetCommand(UUID.randomUUID(), name, description);
-    }
+  public CreateDatasetCommand toCreateDatasetCommand() {
+    return new CreateDatasetCommand(UUID.randomUUID(), name, description);
+  }
 }

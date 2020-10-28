@@ -51,15 +51,16 @@ class TikaOcrClient implements Function<TextExtractionCommand, TextExtractionRes
   }
 
   private Request buildRequest(TextExtractionCommand textExtractionCommand) {
-    log.info("building the tika request from: {}", textExtractionCommand);
-    Request.Builder requestBuilder =
-            new Request.Builder()
-                    .url(tikaUrl)
-                    .put(RequestBody.create(textExtractionCommand.getContent()));
-    Map<String, String> tikaRequestHeaders = TikaHeaders.toTikaHeaders(textExtractionCommand, ocrAdditionalHeaders);
-    if (tikaRequestHeaders != null && !tikaRequestHeaders.isEmpty()) {
-      requestBuilder.headers(Headers.of(tikaRequestHeaders));
-    }
-    return requestBuilder.build();
+      log.info("building the tika request from: {}", textExtractionCommand);
+      Request.Builder requestBuilder =
+              new Request.Builder()
+                      .url(tikaUrl)
+                      .put(RequestBody.create(textExtractionCommand.getContent()));
+      Map<String, String> tikaRequestHeaders =
+              TikaHeaders.toTikaHeaders(textExtractionCommand, ocrAdditionalHeaders);
+      if (tikaRequestHeaders != null && !tikaRequestHeaders.isEmpty()) {
+          requestBuilder.headers(Headers.of(tikaRequestHeaders));
+      }
+      return requestBuilder.build();
   }
 }
