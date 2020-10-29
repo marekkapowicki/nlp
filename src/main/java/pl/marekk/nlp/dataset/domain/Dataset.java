@@ -77,7 +77,7 @@ public class Dataset {
 
     public Optional<Document> addNamedEntitiesToDocument(AddNamedEntitiesCommand command) {
         return documentRepository
-                .getById(command.documentId())
+                .findByIdAndDatasetId(command.documentId(), id)
                 .map(doc -> doc.withNamedEntities(command.toNamedEntity()));
     }
 

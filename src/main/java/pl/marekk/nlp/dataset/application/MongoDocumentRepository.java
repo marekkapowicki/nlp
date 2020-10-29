@@ -5,9 +5,12 @@ import pl.marekk.nlp.dataset.domain.Document;
 import pl.marekk.nlp.dataset.domain.DocumentRepository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface MongoDocumentRepository
         extends MongoRepository<Document, UUID>, DocumentRepository {
     List<Document> getByDatasetId(String datasetId);
+
+    Optional<Document> findByIdAndDatasetId(String uuid, String datasetId);
 }

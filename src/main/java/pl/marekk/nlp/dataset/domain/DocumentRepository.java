@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface DocumentRepository {
   Document save(Document document);
 
-    Optional<Document> getById(String uuid);
+    Optional<Document> findByIdAndDatasetId(String uuid, String datasetId);
 
     List<Document> getByDatasetId(String datasetId);
 }
