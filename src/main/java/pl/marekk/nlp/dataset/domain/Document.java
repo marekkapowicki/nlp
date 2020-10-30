@@ -1,5 +1,6 @@
 package pl.marekk.nlp.dataset.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -9,16 +10,16 @@ import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
+@Getter
 public class Document {
     @Id
+    @Getter(AccessLevel.NONE)
     private String id;
 
     @Indexed(unique = true)
-    @Getter
     private String name;
 
     private String datasetId;
-    @Getter
     private String text;
 
     private Set<NamedEntity> namedEntities;

@@ -19,7 +19,7 @@ class LoggingAspect {
         final LocalDateTime start = LocalDateTime.now();
         final Object proceed = joinPoint.proceed();
         final LocalDateTime end = LocalDateTime.now();
-        Duration duration = Duration.between(start, end);
+        final Duration duration = Duration.between(start, end);
 
         log.info("method {} was finished with success in {} seconds", methodName, duration.toSeconds());
         return proceed;

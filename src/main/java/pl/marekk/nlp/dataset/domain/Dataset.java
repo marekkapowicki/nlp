@@ -75,9 +75,12 @@ public class Dataset {
         return Tuple.of(this, documents);
     }
 
+    public Optional<Document> findDocumentById(String documentId) {
+        return documentRepository.findByIdAndDatasetId(documentId, id);
+    }
+
     public Optional<Document> addNamedEntitiesToDocument(AddNamedEntitiesCommand command) {
-        return documentRepository
-                .findByIdAndDatasetId(command.documentId(), id)
+        return findDocumentById(command.documentId())
                 .map(doc -> doc.withNamedEntities(command.toNamedEntity()));
     }
 

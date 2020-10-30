@@ -44,6 +44,14 @@ public class DatasetController {
     return DocumentDto.of(document);
   }
 
+  @GetMapping(value = "/{id}")
+  EnhancedDatasetDto findDatasetById(@PathVariable("id") UUID datasetId) {
+    log.info("finding dataset by id {}", datasetId);
+    Tuple2<Dataset, List<Document>> datasetTuple =
+            datasetFacade.findById(datasetId).withDocuments();
+    return EnhancedDatasetDto.of(datasetTuple._1, datasetTuple._2);
+  }
+
   @PutMapping(value = "/{datasetId}/documents/{documentId}")
   DocumentDto addNamedEntities(
           @PathVariable("datasetId") UUID datasetId,
@@ -54,11 +62,9 @@ public class DatasetController {
     return DocumentDto.of(document);
   }
 
-  @GetMapping(value = "/{id}")
-  EnhancedDatasetDto findDatasetById(@PathVariable("id") UUID datasetId) {
-    log.info("finding dataset by id {}", datasetId);
-    Tuple2<Dataset, List<Document>> datasetTuple =
-            datasetFacade.findById(datasetId).withDocuments();
-    return EnhancedDatasetDto.of(datasetTuple._1, datasetTuple._2);
+  @GetMapping(value = "/{datasetId}/documents/{documentId}")
+  EnhancedDocumentDto findDocumentById(@PathVariable("datasetId") UUID datasetId,
+                                       @PathVariable("documentId") UUID documentId) {
+    return EnhancedDocumentDto.of(datasetFacade.findDocumentById(datasetId, documentId));
   }
 }

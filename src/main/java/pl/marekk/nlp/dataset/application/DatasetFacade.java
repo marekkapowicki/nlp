@@ -38,4 +38,12 @@ public class DatasetFacade {
                 .addNamedEntitiesToDocument(command)
                 .orElseThrow(DatasetExceptions.notFound("document not found: " + command.documentId()));
     }
+
+    @LogMethodInvocation
+    public Document findDocumentById(UUID datasetId, UUID documentId) {
+        log.info("finding document in dataset {} by id {}", datasetId, datasetId);
+        return findById(datasetId)
+                .findDocumentById(documentId.toString())
+                .orElseThrow(DatasetExceptions.notFound("document not found: " + documentId));
+    }
 }
