@@ -81,7 +81,13 @@ public class Dataset {
 
     public Optional<Document> addNamedEntitiesToDocument(AddNamedEntitiesCommand command) {
         return findDocumentById(command.documentId())
-                .map(doc -> doc.withNamedEntities(command.toNamedEntity()));
+                .map(doc -> doc.withNamedEntities(command.toNamedEntity()))
+                .stream()
+                .findFirst()
+                .map(doc -> {
+                    documentRepository.save(doc);
+                    return doc;
+                });
     }
 
     public UUID id() {

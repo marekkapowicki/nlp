@@ -1,6 +1,7 @@
 package pl.marekk.nlp.dataset.api;
 
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 import pl.marekk.nlp.dataset.domain.Document;
 import pl.marekk.nlp.dataset.domain.NamedEntity;
 
@@ -9,6 +10,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Value
+@Slf4j
 public class EnhancedDocumentDto {
   UUID id;
   String name;

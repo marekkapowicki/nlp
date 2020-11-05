@@ -24,6 +24,7 @@ public class AddNamedEntitiesCommand {
   }
 
   @AllArgsConstructor
+  @ToString
   public static class AddNamedEntityCommand {
     private final int start;
     private final int end;

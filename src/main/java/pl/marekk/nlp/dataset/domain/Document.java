@@ -3,6 +3,7 @@ package pl.marekk.nlp.dataset.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
@@ -11,6 +12,7 @@ import java.util.UUID;
 
 @NoArgsConstructor
 @Getter
+@Slf4j
 public class Document {
     @Id
     @Getter(AccessLevel.NONE)
@@ -35,6 +37,7 @@ public class Document {
     }
 
     Document withNamedEntities(Set<NamedEntity> namedEntities) {
+        log.info("adding {} to {}", namedEntities, id);
         this.namedEntities = namedEntities;
         return this;
     }
