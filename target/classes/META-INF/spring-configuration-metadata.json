@@ -1,0 +1,28 @@
+{
+  "groups": [
+    {
+      "name": "text-extraction",
+      "type": "pl.marekk.nlp.textextraction.application.TikaOcrProperties",
+      "sourceType": "pl.marekk.nlp.textextraction.application.TikaOcrProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "text-extraction.call-timeout-in-second",
+      "type": "java.lang.Integer",
+      "sourceType": "pl.marekk.nlp.textextraction.application.TikaOcrProperties",
+      "defaultValue": 0
+    },
+    {
+      "name": "text-extraction.ocr-additional-headers",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "pl.marekk.nlp.textextraction.application.TikaOcrProperties"
+    },
+    {
+      "name": "text-extraction.server-url",
+      "type": "java.lang.String",
+      "sourceType": "pl.marekk.nlp.textextraction.application.TikaOcrProperties"
+    }
+  ],
+  "hints": []
+}

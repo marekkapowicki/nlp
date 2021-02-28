@@ -1,0 +1,6 @@
+pl/marekk/nlp/textextraction/domain/SuccessTextExtractionResponseFactory.class
+pl/marekk/nlp/textextraction/api/TextExtractorControllerTest.class
+pl/marekk/nlp/textextraction/domain/TextExtractorTest.class
+pl/marekk/nlp/textextraction/domain/FailureTextExtractionResponseFactory.class
+pl/marekk/nlp/NlpApplicationTests.class
+pl/marekk/nlp/textextraction/domain/TestTextExtractor.class

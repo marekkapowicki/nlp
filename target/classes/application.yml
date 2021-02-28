@@ -1,0 +1,21 @@
+spring.data.mongodb:
+  authentication-database: admin
+  host: mongo-db
+  username: nlp
+  password: nlp123
+  database: nlp
+
+text-extraction:
+  serverUrl: http://tika-server-ocr:9998/tika
+  callTimeoutInSecond: 240
+  ocrAdditionalHeaders:
+    X-Tika-PDFocrDPI: 600
+    X-Tika-OCRtimeout: ${text-extraction.callTimeoutInSecond}
+    X-Tika-OCRenableImageProcessing: 1
+    X-Tika-OCRApplyRotation: true
+server:
+  error:
+    include-message: always
+spring.servlet.multipart:
+  max-file-size: 30MB
+  max-request-size: 30MB

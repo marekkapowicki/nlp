@@ -1,0 +1,6 @@
+/home/marekk/workspace/projects/src/test/java/pl/marekk/nlp/textextraction/domain/SuccessTextExtractionResponseFactory.java
+/home/marekk/workspace/projects/src/test/java/pl/marekk/nlp/textextraction/domain/FailureTextExtractionResponseFactory.java
+/home/marekk/workspace/projects/src/test/java/pl/marekk/nlp/textextraction/domain/TextExtractorTest.java
+/home/marekk/workspace/projects/src/test/java/pl/marekk/nlp/textextraction/domain/TestTextExtractor.java
+/home/marekk/workspace/projects/src/test/java/pl/marekk/nlp/textextraction/api/TextExtractorControllerTest.java
+/home/marekk/workspace/projects/src/test/java/pl/marekk/nlp/NlpApplicationTests.java
